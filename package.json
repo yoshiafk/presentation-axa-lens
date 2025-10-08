@@ -1,0 +1,44 @@
+{
+  "name": "AXA Lens Presentation",
+  "version": "1.0.0",
+  "description": "Apple-inspired web presentation for AXA Lens POC application showcasing revolutionary Flutter-based travel insurance with AI-powered OCR processing",
+  "homepage": "https://yoshiafk.github.io/presentation-axa-lens/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yoshiafk/presentation-axa-lens.git"
+  },
+  "keywords": [
+    "axa-lens",
+    "travel-insurance",
+    "ocr-processing",
+    "flutter-app",
+    "presentation",
+    "apple-design",
+    "web-showcase"
+  ],
+  "author": "AXA Lens Team",
+  "license": "MIT",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "npx serve .",
+    "build": "echo 'Static site - no build required'",
+    "validate": "html-validator --file=index.html",
+    "optimize": "imagemin captures/*.png --out-dir=optimized-captures/",
+    "lighthouse": "lighthouse http://localhost:8000 --output html --output-path ./lighthouse-report.html"
+  },
+  "devDependencies": {
+    "html-validator-cli": "^9.0.0",
+    "imagemin-cli": "^7.0.0",
+    "lighthouse": "^10.0.0",
+    "serve": "^14.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
