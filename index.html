@@ -37,6 +37,7 @@
                 <a href="#features" class="nav-link">Features</a>
                 <a href="#business-value" class="nav-link">Business Value</a>
                 <a href="#technology" class="nav-link">Technology</a>
+                <a href="#ocr-implementation" class="nav-link">OCR Implementation</a>
                 <a href="#screens" class="nav-link">Screenshots</a>
                 <a href="#download" class="nav-link nav-cta">Get Started</a>
             </div>
@@ -65,10 +66,10 @@
                 <span class="hero-gradient">Insure Easy</span>
             </h1>
             <p class="hero-subtitle">
-                Revolutionary Flutter-based travel insurance application that combines intelligent 
-                document scanning, AI-powered OCR processing, and seamless AXA insurance integration.
-                Experience enterprise-grade document processing with 90% faster verification times
-                and comprehensive Indonesian market coverage.
+                Revolutionary Flutter-based travel insurance application featuring SecureGPT OCR 
+                with 47 specialized methods, 4-level confidence analysis, and 40+ regex patterns.
+                Combines multi-engine processing (multiple model from SecureGPT) with 
+                intelligent fallback mechanisms for 95%+ accuracy and seamless AXA insurance integration.
             </p>
             <div class="hero-stats">
                 <div class="stat-item">
@@ -84,8 +85,12 @@
                     <div class="stat-label">AI Methods</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">61.2MB</div>
-                    <div class="stat-label">Optimized APK</div>
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Confidence Levels</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">40+</div>
+                    <div class="stat-label">Regex Patterns</div>
                 </div>
             </div>
             <div class="hero-actions">
@@ -125,7 +130,7 @@
                     <h3 class="feature-title">SecureGPT OCR System</h3>
                     <p class="feature-description">
                         Enterprise-grade document recognition with 95%+ accuracy. Our 47-method OCR system 
-                        combines multiple engines (Tesseract, Google Vision, custom models) with advanced AI 
+                        combines multiple engines (NLP Parsers) with advanced AI 
                         post-processing for unmatched precision. Features intelligent fallback mechanisms,
                         adaptive learning, and 4 processing modes (Auto, Hybrid, ChatCompletions, Native).
                     </p>
@@ -175,10 +180,37 @@
                     </div>
                     <h3 class="feature-title">Smart Passport Verification</h3>
                     <p class="feature-description">
-                        Single-screen KYC process with MRZ extraction and real-time validation. 
-                        Reduced verification flow from 3+ screens to 1 with intelligent field parsing,
-                        gender normalization, and ICAO-compliant passport processing.
+                        Advanced MRZ extraction with ICAO-compliant processing and checksum validation.
+                        Features multi-language gender normalization (Indonesian 'Laki-laki' → 'Male'), 
+                        visual similarity scoring for OCR errors, and Indonesian passport format validation 
+                        (/^[A-Z]\d{7}$/). Single-screen KYC reduces verification from 3+ screens to 1.
                     </p>
+                    <div class="feature-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">MRZ Processing</span>
+                            <span class="spec-value">ICAO Standard</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Format Validation</span>
+                            <span class="spec-value">Indonesian Passport</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Error Correction</span>
+                            <span class="spec-value">Visual Similarity</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Gender Mapping</span>
+                            <span class="spec-value">Multi-Language</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Checksum Verify</span>
+                            <span class="spec-value">Data Integrity</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Field Extraction</span>
+                            <span class="spec-value">Positional Parsing</span>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Travel Intelligence -->
@@ -191,10 +223,37 @@
                     </div>
                     <h3 class="feature-title">Travel Intelligence</h3>
                     <p class="feature-description">
-                        Comprehensive coverage of 100+ Indonesian airports with intelligent 
-                        route recognition and risk assessment. Features Jaro-Winkler algorithms
-                        for fuzzy matching and 25x expansion over competitors.
+                        Advanced travel analysis with 100+ Indonesian airports, intelligent route recognition,
+                        and sophisticated risk assessment algorithms. Features Jaro-Winkler fuzzy matching,
+                        Levenshtein distance calculations, and phonetic matching for name normalization.
+                        Supports multi-leg journey analysis and destination-specific coverage rules.
                     </p>
+                    <div class="feature-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Airport Coverage</span>
+                            <span class="spec-value">100+ Indonesian</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Fuzzy Matching</span>
+                            <span class="spec-value">Jaro-Winkler</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Route Intelligence</span>
+                            <span class="spec-value">Multi-Leg Support</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Risk Assessment</span>
+                            <span class="spec-value">Country-Level</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Market Expansion</span>
+                            <span class="spec-value">25x Competitors</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Name Matching</span>
+                            <span class="spec-value">Phonetic + Visual</span>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Insurance Integration -->
@@ -207,10 +266,37 @@
                     </div>
                     <h3 class="feature-title">AXA Insurance Integration</h3>
                     <p class="feature-description">
-                        Seamless policy generation with professional bilingual documentation 
-                        and real-time claims processing. Complete end-to-end solution with
-                        automated risk assessment and dynamic pricing.
+                        Comprehensive policy management system with automated plan recommendation engine,
+                        dynamic pricing based on OCR-extracted data, and intelligent claims processing.
+                        Features bilingual policy generation, passport validation, travel risk assessment,
+                        and seamless renewal processing with historical pattern analysis.
                     </p>
+                    <div class="feature-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Policy Generation</span>
+                            <span class="spec-value">Automated & Bilingual</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Plan Recommendation</span>
+                            <span class="spec-value">AI-Powered Engine</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Claims Processing</span>
+                            <span class="spec-value">OCR-Enhanced</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Risk Assessment</span>
+                            <span class="spec-value">Dynamic & Real-time</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Data Integration</span>
+                            <span class="spec-value">Passport + Ticket</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Document Validation</span>
+                            <span class="spec-value">Cross-Reference</span>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Payment Processing -->
@@ -223,10 +309,37 @@
                     </div>
                     <h3 class="feature-title">Smart Payment System</h3>
                     <p class="feature-description">
-                        Indonesian market focus with QRIS, e-wallets (OVO, Dana, GoPay), and international 
-                        payment methods with PCI DSS security. Local currency support with proper
-                        thousand separators and fraud protection.
+                        Comprehensive payment ecosystem with Indonesian e-wallet integration (OVO, Dana, GoPay),
+                        QRIS support, and international payment methods. Features OCR-enhanced fraud protection,
+                        PCI DSS compliance, currency optimization based on extracted ticket data, and metadata-driven
+                        risk assessment using confidence scores and processing modes.
                     </p>
+                    <div class="feature-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">E-Wallet Support</span>
+                            <span class="spec-value">OVO, Dana, GoPay</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">QRIS Integration</span>
+                            <span class="spec-value">Native Support</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Security Standard</span>
+                            <span class="spec-value">PCI DSS Compliant</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Fraud Protection</span>
+                            <span class="spec-value">OCR-Enhanced</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Currency Support</span>
+                            <span class="spec-value">Dynamic Detection</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Risk Assessment</span>
+                            <span class="spec-value">Metadata-Driven</span>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Cross-Platform -->
@@ -365,6 +478,8 @@
                         <div class="tech-item">Material Design 3</div>
                         <div class="tech-item">Responsive UI</div>
                         <div class="tech-item">Glassmorphism</div>
+                        <div class="tech-item">Dart SDK ^3.9.0</div>
+                        <div class="tech-item">Null Safety</div>
                     </div>
                 </div>
                 <div class="arch-layer">
@@ -374,6 +489,8 @@
                         <div class="tech-item">AI Processing</div>
                         <div class="tech-item">Pattern Recognition</div>
                         <div class="tech-item">Confidence Analysis</div>
+                        <div class="tech-item">Mistral OCR 2503</div>
+                        <div class="tech-item">Multi-Engine Fusion</div>
                     </div>
                 </div>
                 <div class="arch-layer">
@@ -383,6 +500,8 @@
                         <div class="tech-item">PDF Generation</div>
                         <div class="tech-item">Payment Processing</div>
                         <div class="tech-item">Notifications</div>
+                        <div class="tech-item">File Management</div>
+                        <div class="tech-item">Encryption Services</div>
                     </div>
                 </div>
                 <div class="arch-layer">
@@ -392,30 +511,148 @@
                         <div class="tech-item">Mistral OCR 2503</div>
                         <div class="tech-item">Payment Gateways</div>
                         <div class="tech-item">Flight Data</div>
+                        <div class="tech-item">mTLS Authentication</div>
+                        <div class="tech-item">RESTful APIs</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Specifications -->
+            <div class="tech-specs">
+                <div class="specs-grid">
+                    <div class="spec-category">
+                        <h3 class="spec-title">Core Dependencies</h3>
+                        <div class="spec-list">
+                            <div class="spec-detail">
+                                <span class="spec-name">Camera Integration</span>
+                                <span class="spec-version">camera: ^0.11.2</span>
+                            </div>
+                            <div class="spec-detail">
+                                <span class="spec-name">Image Processing</span>
+                                <span class="spec-version">image: ^4.1.7</span>
+                            </div>
+                            <div class="spec-detail">
+                                <span class="spec-name">PDF Generation</span>
+                                <span class="spec-version">pdf: ^3.10.7</span>
+                            </div>
+                            <div class="spec-detail">
+                                <span class="spec-name">Permissions</span>
+                                <span class="spec-version">permission_handler: ^12.0.1</span>
+                            </div>
+                            <div class="spec-detail">
+                                <span class="spec-name">Notifications</span>
+                                <span class="spec-version">flutter_local_notifications: ^17.2.2</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="spec-category">
+                        <h3 class="spec-title">OCR Architecture</h3>
+                        <div class="spec-list">
+                            <div class="spec-detail">
+                                <span class="spec-name">Enhanced OCR Service</span>
+                                <span class="spec-version">15 Methods</span>
+                            </div>
+                            <div class="spec-detail">
+                                <span class="spec-name">Universal Airline Parser</span>
+                                <span class="spec-version">8 Methods</span>
+                            </div>
+                            <div class="spec-detail">
+                                <span class="spec-name">Extraction Strategies</span>
+                                <span class="spec-version">18 Methods</span>
+                            </div>
+                            <div class="spec-detail">
+                                <span class="spec-name">Passport OCR Service</span>
+                                <span class="spec-version">3 Methods</span>
+                            </div>
+                            <div class="spec-detail">
+                                <span class="spec-name">Integration Service</span>
+                                <span class="spec-version">3 Methods</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="spec-category">
+                        <h3 class="spec-title">Platform Support</h3>
+                        <div class="spec-list">
+                            <div class="spec-detail">
+                                <span class="spec-name">Android</span>
+                                <span class="spec-version">API 21+ (5.0)</span>
+                            </div>
+                            <div class="spec-detail">
+                                <span class="spec-name">iOS</span>
+                                <span class="spec-version">12.0+</span>
+                            </div>
+                            <div class="spec-detail">
+                                <span class="spec-name">Web</span>
+                                <span class="spec-version">WebAssembly</span>
+                            </div>
+                            <div class="spec-detail">
+                                <span class="spec-name">Windows</span>
+                                <span class="spec-version">10+</span>
+                            </div>
+                            <div class="spec-detail">
+                                <span class="spec-name">macOS</span>
+                                <span class="spec-version">10.14+</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="spec-category">
+                        <h3 class="spec-title">Performance Metrics</h3>
+                        <div class="spec-list">
+                            <div class="spec-detail">
+                                <span class="spec-name">OCR Processing</span>
+                                <span class="spec-version">&lt; 5 Seconds</span>
+                            </div>
+                            <div class="spec-detail">
+                                <span class="spec-name">App Launch Time</span>
+                                <span class="spec-version">&lt; 3 Seconds</span>
+                            </div>
+                            <div class="spec-detail">
+                                <span class="spec-name">Memory Usage</span>
+                                <span class="spec-version">&lt; 200MB Peak</span>
+                            </div>
+                            <div class="spec-detail">
+                                <span class="spec-name">APK Size</span>
+                                <span class="spec-version">61.2MB</span>
+                            </div>
+                            <div class="spec-detail">
+                                <span class="spec-name">Test Coverage</span>
+                                <span class="spec-version">35+ Test Files</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="tech-stats">
                 <div class="stat-card">
-                    <div class="stat-icon">⚡</div>
+                    <div class="stat-icon">🎯</div>
                     <div class="stat-data">
-                        <div class="stat-number">60fps</div>
-                        <div class="stat-label">Smooth Performance</div>
+                        <div class="stat-number">95%+</div>
+                        <div class="stat-label">OCR Accuracy</div>
                     </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon">🔒</div>
+                    <div class="stat-icon">🧠</div>
                     <div class="stat-data">
-                        <div class="stat-number">mTLS</div>
-                        <div class="stat-label">Secure Authentication</div>
+                        <div class="stat-number">47</div>
+                        <div class="stat-label">AI Methods</div>
                     </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon">📱</div>
+                    <div class="stat-icon">📊</div>
                     <div class="stat-data">
-                        <div class="stat-number">6</div>
-                        <div class="stat-label">Platforms Supported</div>
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Confidence Levels</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🌍</div>
+                    <div class="stat-data">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">Airports Covered</div>
                     </div>
                 </div>
                 <div class="stat-card">
@@ -423,6 +660,173 @@
                     <div class="stat-data">
                         <div class="stat-number">0</div>
                         <div class="stat-label">Critical Errors</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OCR Implementation Section -->
+    <section id="ocr-implementation" class="ocr-implementation">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">SecureGPT OCR Implementation</h2>
+                <p class="section-subtitle">
+                    Deep dive into our enterprise-grade OCR system with 47 specialized methods and 4-level confidence analysis.
+                </p>
+            </div>
+
+            <div class="implementation-grid">
+                <!-- Processing Workflow -->
+                <div class="impl-section">
+                    <h3 class="impl-title">4-Phase Processing Workflow</h3>
+                    <div class="workflow-diagram">
+                        <div class="workflow-steps">
+                            <div class="workflow-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>Document Capture & Analysis</h4>
+                                    <p>AI classification, quality assessment, and processing mode selection</p>
+                                </div>
+                            </div>
+                            <div class="workflow-arrow">→</div>
+                            <div class="workflow-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>Multi-Engine OCR Processing</h4>
+                                    <p>Parallel processing with multi model from SecureGPT</p>
+                                </div>
+                            </div>
+                            <div class="workflow-arrow">→</div>
+                            <div class="workflow-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Specialized Parsing & Validation</h4>
+                                    <p>Document-specific parsing with pattern matching and cross-validation</p>
+                                </div>
+                            </div>
+                            <div class="workflow-arrow">→</div>
+                            <div class="workflow-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>AI Enhancement & Output</h4>
+                                    <p>NLP post-processing and business rule validation</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-World Examples -->
+                <div class="impl-section">
+                    <h3 class="impl-title">Real-World Processing Examples</h3>
+                    <div class="examples-grid">
+                        <div class="example-card">
+                            <h4>Airport Code Correction</h4>
+                            <div class="example-content">
+                                <div class="example-input">Input: "CQK"</div>
+                                <div class="example-process">Fuzzy matching → Levenshtein distance → OCR error patterns</div>
+                                <div class="example-output">Output: "CGK" (Soekarno-Hatta)</div>
+                                <div class="example-confidence">Confidence: 0.87</div>
+                            </div>
+                        </div>
+                        <div class="example-card">
+                            <h4>Passport Number Fix</h4>
+                            <div class="example-content">
+                                <div class="example-input">Input: "A1234S67"</div>
+                                <div class="example-process">Context analysis → Format validation → Character similarity</div>
+                                <div class="example-output">Output: "A1234567"</div>
+                                <div class="example-confidence">Confidence: 0.92</div>
+                            </div>
+                        </div>
+                        <div class="example-card">
+                            <h4>Gender Normalization</h4>
+                            <div class="example-content">
+                                <div class="example-input">Input: "Laki-laki"</div>
+                                <div class="example-process">Language detection → Normalization rules → Standard mapping</div>
+                                <div class="example-output">Output: "Male"</div>
+                                <div class="example-confidence">Confidence: 1.0</div>
+                            </div>
+                        </div>
+                        <div class="example-card">
+                            <h4>MRZ Processing</h4>
+                            <div class="example-content">
+                                <div class="example-input">Input: MRZ 44-char string</div>
+                                <div class="example-process">ICAO parsing → Checksum validation → Field extraction</div>
+                                <div class="example-output">Output: Structured passport data</div>
+                                <div class="example-confidence">Confidence: 0.96</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Confidence Analysis -->
+                <div class="impl-section">
+                    <h3 class="impl-title">Multi-Level Confidence Analysis</h3>
+                    <div class="confidence-levels">
+                        <div class="confidence-level">
+                            <div class="level-header">
+                                <span class="level-name">Character Level</span>
+                                <span class="level-range">0.0 - 1.0</span>
+                            </div>
+                            <p>Individual character recognition certainty with font clarity assessment</p>
+                        </div>
+                        <div class="confidence-level">
+                            <div class="level-header">
+                                <span class="level-name">Word Level</span>
+                                <span class="level-range">0.0 - 1.0</span>
+                            </div>
+                            <p>Complete word formation validation with dictionary matching</p>
+                        </div>
+                        <div class="confidence-level">
+                            <div class="level-header">
+                                <span class="level-name">Field Level</span>
+                                <span class="level-range">0.0 - 1.0</span>
+                            </div>
+                            <p>Format validation against expected patterns and business rules</p>
+                        </div>
+                        <div class="confidence-level">
+                            <div class="level-header">
+                                <span class="level-name">Document Level</span>
+                                <span class="level-range">0.0 - 1.0</span>
+                            </div>
+                            <p>Overall document structure coherence and field relationships</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pattern Library -->
+                <div class="impl-section">
+                    <h3 class="impl-title">Pattern Recognition Library</h3>
+                    <div class="pattern-categories">
+                        <div class="pattern-category">
+                            <h4>Flight Patterns</h4>
+                            <div class="pattern-examples">
+                                <code>/^[A-Z]{2}\d{3,4}$/</code>
+                                <span>Flight number format validation</span>
+                            </div>
+                        </div>
+                        <div class="pattern-category">
+                            <h4>Passport Patterns</h4>
+                            <div class="pattern-examples">
+                                <code>/^[A-Z]\d{7}$/</code>
+                                <span>Indonesian passport format</span>
+                            </div>
+                        </div>
+                        <div class="pattern-category">
+                            <h4>Date Patterns</h4>
+                            <div class="pattern-examples">
+                                <code>DD/MM/YYYY, MM/DD/YYYY</code>
+                                <span>Multiple date format support</span>
+                            </div>
+                        </div>
+                        <div class="pattern-category">
+                            <h4>Airport Codes</h4>
+                            <div class="pattern-examples">
+                                <code>IATA Format + Fuzzy</code>
+                                <span>Airport code with error tolerance</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

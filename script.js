@@ -123,7 +123,11 @@ class AXALensApp {
       .value-card,
       .showcase-item,
       .workflow-step,
-      .main-screenshot
+      .main-screenshot,
+      .impl-section,
+      .example-card,
+      .confidence-level,
+      .pattern-category
     `);
 
     animatableElements.forEach(el => {
