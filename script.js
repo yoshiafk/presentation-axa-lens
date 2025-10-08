@@ -28,6 +28,239 @@ window.addEventListener('scroll', function() {
     }
 });
 
+// Google-style Confetti Physics System
+class ConfettiParticle {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.vx = (Math.random() - 0.5) * 15;
+        this.vy = (Math.random() - 0.5) * 15 - 5;
+        this.rotation = Math.random() * 360;
+        this.rotationSpeed = (Math.random() - 0.5) * 15;
+        this.size = Math.random() * 8 + 4;
+        this.gravity = 0.2;
+        this.drag = 0.98;
+        this.life = 1.0;
+        this.decay = Math.random() * 0.015 + 0.005;
+        this.shape = Math.floor(Math.random() * 4); // 0: circle, 1: square, 2: triangle, 3: rectangle
+        this.color = this.getRandomColor();
+    }
+
+    getRandomColor() {
+        const colors = [
+            '#0A84FF', '#409CFF', '#64D2FF', '#30D158', 
+            '#59E87B', '#BF5AF2', '#FF9F0A', '#FF453A', '#FFD60A'
+        ];
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    update() {
+        this.vy += this.gravity;
+        this.vx *= this.drag;
+        this.vy *= this.drag;
+        this.x += this.vx;
+        this.y += this.vy;
+        this.rotation += this.rotationSpeed;
+        this.life -= this.decay;
+        return this.life > 0;
+    }
+
+    draw(ctx) {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation * Math.PI / 180);
+        ctx.globalAlpha = this.life;
+        ctx.fillStyle = this.color;
+
+        switch(this.shape) {
+            case 0: // Circle
+                ctx.beginPath();
+                ctx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
+                ctx.fill();
+                break;
+            case 1: // Square
+                ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+                break;
+            case 2: // Triangle
+                ctx.beginPath();
+                ctx.moveTo(0, -this.size / 2);
+                ctx.lineTo(-this.size / 2, this.size / 2);
+                ctx.lineTo(this.size / 2, this.size / 2);
+                ctx.closePath();
+                ctx.fill();
+                break;
+            case 3: // Rectangle
+                ctx.fillRect(-this.size / 2, -this.size / 4, this.size, this.size / 2);
+                break;
+        }
+        ctx.restore();
+    }
+}
+
+class ConfettiSystem {
+    constructor() {
+        this.canvas = null;
+        this.ctx = null;
+        this.particles = [];
+        this.animationId = null;
+    }
+
+    createCanvas() {
+        this.canvas = document.createElement('canvas');
+        this.canvas.style.position = 'fixed';
+        this.canvas.style.top = '0';
+        this.canvas.style.left = '0';
+        this.canvas.style.width = '100%';
+        this.canvas.style.height = '100%';
+        this.canvas.style.pointerEvents = 'none';
+        this.canvas.style.zIndex = '9999';
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+        this.ctx = this.canvas.getContext('2d');
+        document.body.appendChild(this.canvas);
+    }
+
+    burst(x, y, count = 120) {
+        if (!this.canvas) this.createCanvas();
+        
+        // Create burst with staggered explosions
+        for (let i = 0; i < count; i++) {
+            setTimeout(() => {
+                const particle = new ConfettiParticle(x, y);
+                this.particles.push(particle);
+            }, Math.random() * 50);
+        }
+        
+        this.animate();
+    }
+
+    animate() {
+        if (this.animationId) return;
+        
+        const loop = () => {
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            
+            this.particles = this.particles.filter(particle => {
+                const alive = particle.update();
+                if (alive) particle.draw(this.ctx);
+                return alive;
+            });
+
+            if (this.particles.length > 0) {
+                this.animationId = requestAnimationFrame(loop);
+            } else {
+                this.stop();
+            }
+        };
+        
+        this.animationId = requestAnimationFrame(loop);
+    }
+
+    stop() {
+        if (this.animationId) {
+            cancelAnimationFrame(this.animationId);
+            this.animationId = null;
+        }
+        if (this.canvas) {
+            document.body.removeChild(this.canvas);
+            this.canvas = null;
+            this.ctx = null;
+        }
+    }
+}
+
+// Screen flash effect
+function createScreenFlash() {
+    const flash = document.createElement('div');
+    flash.style.position = 'fixed';
+    flash.style.top = '0';
+    flash.style.left = '0';
+    flash.style.width = '100%';
+    flash.style.height = '100%';
+    flash.style.background = 'rgba(255, 255, 255, 0.8)';
+    flash.style.pointerEvents = 'none';
+    flash.style.zIndex = '9998';
+    flash.style.opacity = '1';
+    flash.style.transition = 'opacity 0.3s ease-out';
+    
+    document.body.appendChild(flash);
+    
+    setTimeout(() => {
+        flash.style.opacity = '0';
+        setTimeout(() => {
+            if (flash.parentNode) {
+                document.body.removeChild(flash);
+            }
+        }, 300);
+    }, 50);
+}
+
+// Impact ripple effect
+function createImpactRipple(x, y) {
+    const ripple = document.createElement('div');
+    ripple.style.position = 'fixed';
+    ripple.style.left = x - 25 + 'px';
+    ripple.style.top = y - 25 + 'px';
+    ripple.style.width = '50px';
+    ripple.style.height = '50px';
+    ripple.style.border = '3px solid #0A84FF';
+    ripple.style.borderRadius = '50%';
+    ripple.style.pointerEvents = 'none';
+    ripple.style.zIndex = '9997';
+    ripple.style.transform = 'scale(0)';
+    ripple.style.opacity = '1';
+    ripple.style.transition = 'transform 0.6s ease-out, opacity 0.6s ease-out';
+    
+    document.body.appendChild(ripple);
+    
+    setTimeout(() => {
+        ripple.style.transform = 'scale(8)';
+        ripple.style.opacity = '0';
+        setTimeout(() => {
+            if (ripple.parentNode) {
+                document.body.removeChild(ripple);
+            }
+        }, 600);
+    }, 10);
+}
+
+// Enhanced Demo Button with Surprise Elements
+const confettiSystem = new ConfettiSystem();
+
+document.addEventListener('DOMContentLoaded', function() {
+    const demoButton = document.getElementById('demo-button');
+    const surprisePanel = document.getElementById('surprise-panel');
+    const closeSurprise = document.getElementById('close-surprise');
+    
+    if (demoButton) {
+        demoButton.addEventListener('click', function(e) {
+            const rect = demoButton.getBoundingClientRect();
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
+            
+            // Create visual effects
+            createScreenFlash();
+            createImpactRipple(x, y);
+            confettiSystem.burst(x, y, 120);
+            
+            // Show surprise panel after delay
+            setTimeout(() => {
+                if (surprisePanel) {
+                    surprisePanel.classList.remove('hidden');
+                }
+            }, 1000);
+        });
+    }
+    
+    if (closeSurprise) {
+        closeSurprise.addEventListener('click', function() {
+            if (surprisePanel) {
+                surprisePanel.classList.add('hidden');
+            }
+        });
+    }
+});
+
 // Apple-style scroll progress indicator
 const createScrollProgress = () => {
     const progressBar = document.createElement('div');
