@@ -1,7 +1,7 @@
 {
   "name": "AXA Lens Presentation",
   "version": "1.0.0",
-  "description": "Apple-inspired web presentation for AXA Lens POC application showcasing revolutionary Flutter-based travel insurance with AI-powered OCR processing",
+  "description": "Web presentation for AXA Lens POC application showcasing revolutionary Flutter-based travel insurance with AI-powered OCR processing",
   "homepage": "https://yoshiafk.github.io/presentation-axa-lens/",
   "repository": {
     "type": "git",
