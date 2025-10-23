@@ -16,6 +16,7 @@ class AXALensApp {
     this.setupMobileMenu();
     this.setupSmoothScrolling();
     this.setupPerformanceOptimizations();
+    this.setupScreenshotModal();
   }
 
   // Smooth scrolling for navigation links
@@ -343,6 +344,9 @@ class AXALensApp {
     
     // Technology items reveal
     this.setupTechAnimation();
+    
+    // Animate capability cards
+    this.setupCapabilityCardsAnimation();
   }
 
   setupStatsCounter() {
@@ -364,7 +368,9 @@ class AXALensApp {
     const finalValue = element.textContent;
     const isPercentage = finalValue.includes('%');
     const isPlus = finalValue.includes('+');
+    const isMB = finalValue.toLowerCase().includes('mb');
     const numericValue = parseInt(finalValue.replace(/[^\d]/g, ''));
+    if (isNaN(numericValue)) return; // Skip animation for non-numeric values
     
     let currentValue = 0;
     const increment = numericValue / 50; // 50 steps
@@ -382,6 +388,7 @@ class AXALensApp {
       let displayValue = Math.floor(currentValue).toString();
       if (isPlus) displayValue += '+';
       if (isPercentage) displayValue += '%';
+      if (isMB) displayValue += 'MB';
       
       element.textContent = displayValue;
     }, stepTime);
@@ -407,6 +414,28 @@ class AXALensApp {
         });
       });
       
+      observer.observe(card);
+    });
+  }
+
+  // Animate capability cards
+  setupCapabilityCardsAnimation() {
+    const cards = document.querySelectorAll('.capability-card');
+    cards.forEach((card, index) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(50px)';
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              card.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            }, index * 120);
+            observer.unobserve(entry.target);
+          }
+        });
+      });
       observer.observe(card);
     });
   }
