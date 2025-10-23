@@ -94,8 +94,8 @@ class AXALensApp {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate-in');
           
-          // Special animation for feature cards
-          if (entry.target.classList.contains('feature-card')) {
+          // Special animation for impact cards
+          if (entry.target.classList.contains('impact-card')) {
             this.animateFeatureCard(entry.target);
           }
           
@@ -114,7 +114,7 @@ class AXALensApp {
 
     // Observe all animatable elements
     const animatableElements = document.querySelectorAll(`
-      .feature-card,
+      .impact-card,
       .tech-item,
       .screenshot-item,
       .stat-card,
@@ -395,7 +395,7 @@ class AXALensApp {
   }
 
   setupFeatureCardsAnimation() {
-    const cards = document.querySelectorAll('.feature-card');
+    const cards = document.querySelectorAll('.impact-card');
     
     cards.forEach((card, index) => {
       card.style.opacity = '0';
@@ -589,9 +589,22 @@ class ButtonEnhancer {
   }
 
   setupHoverEffects() {
-    const cards = document.querySelectorAll('.feature-card, .stat-card');
+    // Apply global gradient orb effect to the html element
+    document.documentElement.addEventListener('mousemove', (e) => {
+      const x = e.clientX;
+      const y = e.clientY;
+      
+      document.documentElement.style.setProperty('--mouse-x', `${x}px`);
+      document.documentElement.style.setProperty('--mouse-y', `${y}px`);
+      
+      // Debug: uncomment to see mouse coordinates
+      // console.log(`Mouse: ${x}, ${y}`);
+    });
     
-    cards.forEach(card => {
+    // Keep the original card-specific effects for stat cards if needed
+    const statCards = document.querySelectorAll('.stat-card');
+    
+    statCards.forEach(card => {
       card.addEventListener('mouseenter', (e) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -615,6 +628,7 @@ class ButtonEnhancer {
 
 // Initialize the application when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('AXA Lens app initializing...');
   new AXALensApp();
   new ButtonEnhancer();
   
@@ -681,27 +695,46 @@ enhancedStyles.textContent = `
     transform: rotate(-45deg) translate(7px, -6px);
   }
   
-  .feature-card:hover::after {
+  /* Global gradient orb effect */
+  html::after {
+    content: '';
+    position: fixed;
+    top: var(--mouse-y, 50vh);
+    left: var(--mouse-x, 50vw);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(30, 61, 255, 0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 0;
+    transition: all 0.1s ease-out;
+    opacity: 1;
+  }
+  
+  /* Keep original impact-card effect for layered depth */
+  .impact-card:hover::after {
     content: '';
     position: absolute;
     top: var(--mouse-y, 50%);
     left: var(--mouse-x, 50%);
     width: 300px;
     height: 300px;
-    background: radial-gradient(circle, rgba(0, 0, 143, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(0, 0, 143, 0.12) 0%, transparent 70%);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none;
     z-index: 0;
   }
   
-  .feature-card > * {
+  .impact-card > * {
     position: relative;
     z-index: 1;
   }
   
   @media (prefers-reduced-motion: reduce) {
-    .feature-card:hover::after {
+    body::after,
+    .impact-card:hover::after {
       display: none;
     }
   }
