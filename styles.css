@@ -85,6 +85,7 @@
   /* Z-index */
   --z-sticky: 1000;
 /* End of file */
+}
 
 /* Reset & Base */
 * {
@@ -1213,12 +1214,10 @@ p {
   max-width: 980px;
   margin: 0 auto;
   padding: 0 22px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
+  }
+  .nav-container {
+    padding: 0 16px;
+  }
 .nav-logo {
   display: flex;
   align-items: center;
@@ -2133,11 +2132,11 @@ section {
   .container {
     padding: 0 16px;
   }
+}
   
   .nav-container {
     padding: 0 16px;
   }
-}
 
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
@@ -2236,6 +2235,7 @@ section {
   html {
     scroll-padding-top: 60px;
   }
+}
 
 /* --- FIXES --- */
 /* 1. Remove duplicate/legacy .impact-card and related rules */
